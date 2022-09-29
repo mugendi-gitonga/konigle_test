@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNITY</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* table td {
+
+        } */
+    </style>
+</head>
+<body>
+
+    <section>
+        <h1 style="border-bottom: solid 1px #000;"> Unity</h1>
+        <h2> {{current_month_name}} {{current_year}}</h2>
+
+        <div style="width:100%; display:flex; text-align:center; justify-content: center;">
+            <div style="width:33%; padding:5px; text-align:left; ">
+                <div style="flex-direction: column; padding:10px; border: 1px #000 solid;margin-right: 50px; background-color:lightgray;">
+                    <div style="font-weight:bold; font-size:20px;">Email list</div>
+                    <div style="font-size:30px; margin-top: 30px; margin-bottom:10px;">{{emails.count}}</div>
+                </div>
+            </div>
+            <div style="width:33%; padding:5px; text-align:left; ">
+                <div style="flex-direction: column; padding:10px; border: 1px #000 solid;margin-right: 50px; background-color:lightgray;">
+                    <div style="font-weight:bold; font-size:20px;">New this month</div>
+                    <div style="font-size:30px; margin-top: 30px; margin-bottom:10px;">{{this_month_emails}}</div>
+                </div>
+            </div>
+            <div style="width:33%; padding:5px; text-align:left; ">
+                <div style="flex-direction: column; padding:10px; border: 1px #000 solid;margin-right: 50px; background-color:lightgray;">
+                    <div style="font-weight:bold; font-size:20px;">Unsubscribed</div>
+                    <div style="font-size:30px; margin-top: 30px; margin-bottom:10px;">{{unsubscribed_emails}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="width:100%; display:flex; text-align:center; margin-top: 50px; justify-content:left;">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <td style="border-top: 3px solid #000;border-right: 3px solid #000;padding:10px; font-weight:bold;">Email ID</td>
+                        <td style="border-top: 3px solid #000;border-right: 3px solid #000;padding:10px; font-weight:bold;">Timestamp</td>
+                        <td style="border-top: 3px solid #000;padding:10px; font-weight:bold;">Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for email in emails %}
+                    <tr>
+                        <td style="border-top: 3px solid #000;border-right: 3px solid #000; padding:10px">{{email.email}}</td>
+                        <td style="border-top: 3px solid #000;border-right: 3px solid #000; padding:10px">{{email.creation_date}}</td>
+                        {% if email.status is True %}
+                        <td style="border-top: 3px solid #000; padding:10px">Subscribed</td>
+                        {% else %}
+                        <td style="border-top: 3px solid #000; padding:10px">Unsubscribed</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+    </section>
+    
+</body>
+</html>
